@@ -1,0 +1,10 @@
+{% extends 'base.html' %}{% block content %}
+<h1>New order</h1><p class="sub">Choose a customer and products. Only active products are listed.</p>
+<form method="post" class="card"><input type="hidden" name="_csrf" value="{{ csrf_token() }}">
+<label>Customer</label><select name="customer_id" required><option value="">Select customer…</option>{% for c in customers %}<option value="{{ c.id }}" data-type="{{ c.ctype }}">{{ c.name }} · {{ c.ctype }} · {{ c.state }}</option>{% endfor %}</select>
+<label>Products</label><div id="lines">
+<div class="row line"><select name="product_id">{% for p in products %}<option value="{{ p.id }}" data-p="{{ p.price_paise }}" data-d="{{ p.distributor_price_paise if p.distributor_price_paise is not none else '' }}">{{ p.name }} {{ p.pack_size }} · {{ p.price_paise|money }}</option>{% endfor %}</select>
+<input name="qty" type="number" min="1" step="1" inputmode="numeric" placeholder="Qty (packets)"><button type="button" class="alt w" data-del-row>✕</button></div></div>
+<p><button type="button" class="alt sm" data-add-row="#lines">＋ Add product</button></p>
+<label>Notes (optional)</label><input name="notes"><p class="muted">Estimated value before GST: <b id="est">₹0.00</b></p>
+<button>Submit order</button></form>{% endblock %}

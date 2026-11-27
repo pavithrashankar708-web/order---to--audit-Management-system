@@ -1,0 +1,7 @@
+{% extends 'base.html' %}{% block content %}
+<h1>{{ 'My orders' if role == 'salesman' else 'Orders' }}</h1><p class="sub">Order status from submission to dispatch.</p>
+<p class="noprint">{% for s in ['', 'SUBMITTED', 'APPROVED', 'INVOICED', 'DISPATCHED', 'REJECTED'] %}<a class="btn sm {{ '' if (status or '') == s else 'alt' }}" href="{{ url_for('main.orders', status=s or None) }}">{{ s or 'All' }}</a> {% endfor %}
+{% if role in ('salesman','admin') %}<a class="btn mint sm" href="{{ url_for('main.order_new') }}">＋ New order</a>{% endif %}</p>
+<div class="card scroll"><table><tr><th>Order</th><th>Date</th><th>Customer</th><th>Salesman</th><th class="num">Value (pre-GST)</th><th>Status</th></tr>
+{% for o in rows %}<tr><td><a href="{{ url_for('main.order_detail', oid=o.id) }}">{{ o.number }}</a></td><td>{{ o.date }}</td><td>{{ o.cname }}</td><td>{{ o.sname }}</td><td class="num">{{ o.est|money }}</td><td><span class="badge b-{{ o.status|lower }}">{{ o.status }}</span></td></tr>
+{% else %}<tr><td colspan="6" class="muted">No orders.</td></tr>{% endfor %}</table></div>{% endblock %}

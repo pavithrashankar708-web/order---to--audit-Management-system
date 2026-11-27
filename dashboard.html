@@ -1,0 +1,17 @@
+{% extends 'base.html' %}{% block content %}
+<h1>Business dashboard</h1><p class="sub">Live figures from the ledger, invoices and batches.</p>
+<div class="grid g5" style="margin-bottom:18px">
+<div class="kpi k1"><span>Invoiced (incl. GST)</span><b>{{ inv.t|money }}</b><small class="muted">{{ inv.n }} invoice(s)</small></div>
+<div class="kpi k2"><span>Collected</span><b>{{ paid|money }}</b></div>
+<div class="kpi k3"><span>Receivables</span><b>{{ outstanding|money }}</b></div>
+<div class="kpi"><span>Pending orders</span><b>{{ pending }}</b></div>
+<div class="kpi"><span>Finished goods</span><b>{{ fg }} pkt</b></div></div>
+<div class="grid g2">
+<div class="card"><h2>Latest batch cost</h2>{% if last %}<p><b>{{ last.run.batch_id }}</b> <span class="badge b-{{ last.run.status|lower }}">{{ last.run.status }}</span></p>
+{% if last.completed %}<table><tr><td>Materials</td><td class="num">{{ last.material_cost|money }}</td></tr><tr><td>Labour + gas/power</td><td class="num">{{ (last.labour + last.power)|money }}</td></tr>
+<tr><td><b>Total cost</b></td><td class="num"><b>{{ last.total_cost|money }}</b></td></tr><tr><td>Cost per packet</td><td class="num"><b>{{ last.cost_per_packet|money }}</b></td></tr>
+<tr><td>Yield variance</td><td class="num {{ 'neg' if last.yield_flag }}">{{ last.yield_bp|bp }}</td></tr></table>{% endif %}{% else %}<p class="muted">No completed batch yet.</p>{% endif %}</div>
+<div class="card"><h2>Stock vs reorder level</h2>{% for s in stock %}<div style="margin:8px 0"><div style="display:flex;justify-content:space-between"><span>{{ s.m.name }}</span><b class="{{ 'neg' if s.low }}">{{ s.bal|qty }} {{ s.m.unit }}{% if s.low %} · LOW{% endif %}</b></div><div class="bar {{ 'low' if s.low }}"><i style="width:{{ s.pct }}%"></i></div></div>{% endfor %}</div></div>
+<div class="card"><h2>✦ AURA alerts <span class="note">· rule-based</span></h2>{% for i in insights %}<div class="insight {{ i.level }}"><b>{{ i.title }}</b><br><span class="muted">{{ i.detail }}</span></div>{% endfor %}<a href="{{ url_for('main.aura_page') }}">All insights →</a></div>
+<div class="card"><h2>Recent orders</h2><div class="scroll"><table><tr><th>Order</th><th>Customer</th><th>Status</th></tr>{% for o in recent %}<tr><td><a href="{{ url_for('main.order_detail', oid=o.id) }}">{{ o.number }}</a></td><td>{{ o.cname }}</td><td><span class="badge b-{{ o.status|lower }}">{{ o.status }}</span></td></tr>{% endfor %}</table></div></div>
+{% endblock %}

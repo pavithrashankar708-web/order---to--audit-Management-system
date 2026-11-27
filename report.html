@@ -1,0 +1,7 @@
+{% extends 'base.html' %}{% block content %}<h1>{{ rep.title }}</h1>
+<form class="card noprint" method="get"><div class="row"><div><label>From</label><input type="date" name="date_from" value="{{ a.date_from }}"></div><div><label>To</label><input type="date" name="date_to" value="{{ a.date_to }}"></div>
+{% if key == 'stock_ledger' %}<div><label>Item</label><select name="item"><option value="">All items</option>{% for v, n in items %}<option value="{{ v }}" {{ 'selected' if a.item == v }}>{{ n }}</option>{% endfor %}</select></div>{% endif %}
+<button class="w">Apply</button></div>
+<p>Export: {% for f, l in [('csv','CSV'),('xlsx','Excel'),('pdf','PDF')] %}<a class="btn alt sm" href="{{ url_for('main.report', key=key, format=f, date_from=a.date_from, date_to=a.date_to, item=a.item) }}">{{ l }}</a> {% endfor %}</p></form>
+<div class="card scroll"><table><tr>{% for h in rep.headers %}<th>{{ h }}</th>{% endfor %}</tr>{% for row in rep.rows %}<tr>{% for v in row %}<td class="{{ 'num' if rep.types[loop.index0] == 'money' }}">{{ cell(v, rep.types[loop.index0]) }}</td>{% endfor %}</tr>{% else %}<tr><td colspan="{{ rep.headers|length }}" class="muted">No data for this selection.</td></tr>{% endfor %}</table>
+{% if rep.note %}<p class="note">{{ rep.note }}</p>{% endif %}</div>{% endblock %}

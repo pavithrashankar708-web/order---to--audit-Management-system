@@ -1,0 +1,4 @@
+{% extends 'base.html' %}{% block content %}<h1>Invoices & payments</h1><p class="sub">GST invoices with received and outstanding balances.</p>
+<div class="card scroll"><table><tr><th>Invoice</th><th>Date</th><th>Customer</th><th>Supply</th><th class="num">Total</th><th class="num">Received</th><th class="num">Outstanding</th><th>Dispatch</th></tr>
+{% for r in rows %}<tr><td><a href="{{ url_for('main.invoice', iid=r.id) }}">{{ r.number }}</a></td><td>{{ r.date }}</td><td><a href="{{ url_for('main.customer', cid=r.customer_id) }}">{{ r.cname }}</a></td><td>{{ 'IGST' if r.interstate else 'CGST+SGST' }}</td>
+<td class="num">{{ r.total_paise|money }}</td><td class="num">{{ r.paid|money }}</td><td class="num"><b>{{ (r.total_paise - r.paid)|money }}</b></td><td>{{ 'Dispatched' if r.dispatched else 'Pending' }}</td></tr>{% else %}<tr><td colspan="8" class="muted">No invoices yet.</td></tr>{% endfor %}</table></div>{% endblock %}

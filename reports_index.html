@@ -1,0 +1,1 @@
+{% extends 'base.html' %}{% block content %}<h1>Reports</h1><p class="sub">Every report exports to CSV, Excel and PDF.</p><div class="grid g3">{% for k, t in items %}<a class="card" style="margin:0" href="{{ url_for('main.report', key=k) }}"><b>{{ t }}</b><br><span class="note">View · export</span></a>{% endfor %}</div>{% endblock %}

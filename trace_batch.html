@@ -1,0 +1,3 @@
+{% extends 'base.html' %}{% block content %}<h1>Trace · {{ t.run.batch_id }}</h1><p class="sub">{{ t.run.product }} · {{ t.run.kind }} batch · {{ t.run.date }}</p>
+{% if t.run.kind == 'OPENING' %}<div class="flash ok">Opening finished-goods batch: no material consumption is recorded for stock that existed before the system went live.</div>{% endif %}
+{% include '_trace_batch_body.html' %}{% endblock %}

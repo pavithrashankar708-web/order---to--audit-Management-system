@@ -1,0 +1,8 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sign in · {{ company.name }}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head><body><div class="loginwrap"><div class="login">
+<div class="card"><h1>🌿 {{ company.name }}</h1><p class="sub">{{ company.tagline }}<br>Order-to-Audit Management System · prototype</p>
+{% for cat, m in get_flashed_messages(with_categories=true) %}<div class="flash {{ cat }}">{{ m }}</div>{% endfor %}
+<form method="post"><input type="hidden" name="_csrf" value="{{ csrf_token() }}"><label>Username</label><input name="username" autofocus required autocomplete="username">
+<label>Password</label><input type="password" name="password" required autocomplete="current-password"><p><button>Sign in</button></p></form></div>
+<div class="card"><h2>Demo accounts</h2><p class="note">Password for all: <b>{{ pw }}</b> (prototype only - remove this panel before any real use)</p>
+<table>{% for u, n, r in demo %}<tr><td><code>{{ u }}</code></td><td>{{ n }}</td></tr>{% endfor %}</table></div></div></div></body></html>

@@ -1,0 +1,6 @@
+{% extends 'base.html' %}{% block content %}<h1>New purchase</h1>
+<form method="post" class="card"><input type="hidden" name="_csrf" value="{{ csrf_token() }}">
+<div class="row"><div><label>Supplier</label><select name="supplier_id">{% for s in suppliers %}<option value="{{ s.id }}">{{ s.name }}</option>{% endfor %}</select></div><div><label>Date</label><input type="date" name="date" value="{{ today }}"></div><div><label>Supplier invoice no. (blocks duplicates)</label><input name="inv_no"></div></div>
+<label>Lines</label><div id="lines"><div class="row line"><select name="material_id">{% for m in materials %}<option value="{{ m.id }}" data-cost="{{ m.last_cost_paise|rupees }}">{{ m.name }} ({{ m.unit }})</option>{% endfor %}</select>
+<input name="qty" inputmode="decimal" placeholder="Quantity"><input name="rate" inputmode="decimal" placeholder="Rate ₹ per unit"><button type="button" class="alt w" data-del-row>✕</button></div></div>
+<p><button type="button" class="alt sm" data-add-row="#lines">＋ Add line</button></p><button>Post purchase</button></form>{% endblock %}

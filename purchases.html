@@ -1,0 +1,4 @@
+{% extends 'base.html' %}{% block content %}<h1>Purchases</h1><p class="sub">Each purchase creates a stock lot that production issues draw from (FIFO).</p>
+{% if role == 'supervisor' %}<p><a class="btn mint" href="{{ url_for('main.purchase_new') }}">＋ New purchase</a></p>{% endif %}
+<div class="card scroll"><table><tr><th>Purchase</th><th>Date</th><th>Supplier</th><th>Supplier inv.</th><th class="num">Amount</th></tr>{% for r in rows %}<tr><td>{{ r.number }}</td><td>{{ r.date }}</td><td>{{ r.sname }}</td><td>{{ r.supplier_inv_no or '—' }}</td><td class="num">{{ r.amt|money }}</td></tr>{% else %}<tr><td colspan="5" class="muted">No purchases yet.</td></tr>{% endfor %}</table>
+<p class="note">Line detail: <a href="{{ url_for('main.report', key='purchase_register') }}">Purchase register</a></p></div>{% endblock %}

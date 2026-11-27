@@ -1,0 +1,11 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}{{ company.name }}{% endblock %} · Order-to-Audit</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body>
+<div class="top"><button class="alt" data-toggle-nav aria-label="Menu">☰</button><b>{{ company.name }}</b></div>
+<aside class="side"><div class="brand"><b>🌿 {{ company.name }}</b><small>{{ company.tagline }}</small></div>
+{% for ep, label, r, ic in nav %}<a class="nav {{ 'on' if request.endpoint == ep }}" href="{{ url_for(ep) }}"><span>{{ ic }}</span>{{ label }}</a>{% endfor %}
+{% if settings %}<h6>Settings</h6>{% for k, l in settings %}<a class="nav {{ 'on' if request.view_args and request.view_args.get('key') == k }}" href="{{ url_for('main.master_list', key=k) }}"><span>⚙</span>{{ l }}</a>{% endfor %}{% endif %}
+<div class="who"><b>{{ user.name }}</b><br><span class="muted">{{ role|capitalize }}{% if role in ('auditor','owner') %} · read-only{% endif %}</span>
+<form method="post" action="{{ url_for('main.logout') }}"><input type="hidden" name="_csrf" value="{{ csrf_token() }}"><button class="alt sm">Sign out</button></form></div></aside>
+<main class="main">{% for cat, m in get_flashed_messages(with_categories=true) %}<div class="flash {{ cat }}">{{ m }}</div>{% endfor %}{% block content %}{% endblock %}</main>
+<script src="{{ url_for('static', filename='app.js') }}"></script></body></html>

@@ -1,0 +1,4 @@
+{% extends 'base.html' %}{% block content %}{% set inv = t.invoice %}<h1>Trace · {{ inv.number }}</h1><p class="sub">{{ inv.customer }} · order {{ inv.order_no }} · {{ inv.date }} · total {{ inv.total_paise|money }}</p>
+<div class="card scroll"><h2>Dispatch {{ t.dispatch.number if t.dispatch else '(not dispatched)' }}{% if t.dispatch %} · {{ t.dispatch.date }}{% endif %}</h2><table><tr><th>Item</th><th>Batch (FIFO allocation)</th><th class="num">Qty</th></tr>
+{% for a in t.allocations %}<tr><td>{{ a.description }}</td><td><a href="{{ url_for('main.trace_batch', rid=a.run_id) }}">{{ a.batch_id }}</a></td><td class="num">{{ a.qty }}</td></tr>{% else %}<tr><td colspan="3" class="muted">Nothing dispatched.</td></tr>{% endfor %}</table></div>
+{% for t in t.batches %}<h2>Batch {{ t.run.batch_id }}</h2>{% include '_trace_batch_body.html' %}{% endfor %}{% endblock %}

@@ -1,0 +1,6 @@
+{% extends 'base.html' %}{% block content %}<h1>{{ 'Edit' if row else 'Add' }} · {{ cfg.title }}</h1>
+<form method="post" class="card" style="max-width:640px"><input type="hidden" name="_csrf" value="{{ csrf_token() }}">
+{% for f, v in vals %}{% if f.type == 'bool' %}<label><input type="checkbox" name="{{ f.name }}" value="1" style="width:auto" {{ 'checked' if v in (1, '1') }}> {{ f.label }}</label>
+{% else %}<label>{{ f.label }}{{ ' *' if f.req }}</label>{% if f.type == 'select' %}<select name="{{ f.name }}">{% for o in f.opts %}<option {{ 'selected' if v == o }}>{{ o }}</option>{% endfor %}</select>
+{% else %}<input name="{{ f.name }}" value="{{ v }}" {{ 'required' if f.req }} {% if f.type in ('rupees','percent','qty','int') %}inputmode="decimal"{% endif %}>{% endif %}{% endif %}{% endfor %}
+<p><button>Save</button> <a class="btn alt" href="{{ url_for('main.master_list', key=key) }}">Cancel</a></p></form>{% endblock %}

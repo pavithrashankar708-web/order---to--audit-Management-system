@@ -1,0 +1,4 @@
+{% extends 'base.html' %}{% block content %}<h1>{{ c.name }}</h1><p class="sub">{{ c.ctype }} · {{ c.state }} · GSTIN {{ c.gstin or '—' }} (dummy)</p>
+<div class="card scroll"><h2>Sales history</h2><table><tr><th>Invoice</th><th>Date</th><th class="num">Total</th><th class="num">Received</th><th class="num">Outstanding</th></tr>
+{% for r in rows %}<tr><td><a href="{{ url_for('main.invoice', iid=r.id) }}">{{ r.number }}</a></td><td>{{ r.date }}</td><td class="num">{{ r.total_paise|money }}</td><td class="num">{{ r.paid|money }}</td><td class="num">{{ (r.total_paise - r.paid)|money }}</td></tr>{% else %}<tr><td colspan="5" class="muted">No invoices.</td></tr>{% endfor %}</table></div>
+<div class="card"><h2>Orders</h2>{% for o in orders %}<a href="{{ url_for('main.order_detail', oid=o.id) }}">{{ o.number }}</a> <span class="badge b-{{ o.status|lower }}">{{ o.status }}</span> &nbsp; {% endfor %}</div>{% endblock %}

@@ -1,0 +1,2 @@
+{% extends 'base.html' %}{% block content %}<h1>✦ AURA · business assistant</h1><p class="sub"><span class="badge">{{ label }}</span></p>
+<div class="card">{% for i in items %}<div class="insight {{ i.level }}"><span class="badge b-{{ i.level }}">{{ i.area }}</span> <b>{{ i.title }}</b><br><span class="muted">{{ i.detail }}</span>{% if i.action %}<br>👉 {{ i.action }}{% endif %}</div>{% endfor %}</div>{% endblock %}

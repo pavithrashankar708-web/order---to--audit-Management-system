@@ -1,0 +1,8 @@
+{% extends 'base.html' %}{% block content %}<h1>{{ cfg.title }}</h1><p class="sub">{{ 'Inactive items stay in history but cannot be selected in new transactions.' }}</p>
+{% if can %}<p><a class="btn mint" href="{{ url_for('main.master_form', key=key) }}">＋ Add</a></p>{% endif %}
+<div class="card scroll"><table><tr>{% for f in cfg.fields %}<th>{{ f.label }}</th>{% endfor %}<th>Status</th><th></th></tr>
+{% for r, sh in rows %}<tr>{% for v in sh %}<td>{{ v }}</td>{% endfor %}<td><span class="badge {{ 'b-ok' if r.active else 'b-rejected' }}">{{ 'Active' if r.active else 'Inactive' }}</span></td>
+<td class="noprint" style="white-space:nowrap">{% if key == 'customers' and role in ('admin','owner','auditor') %}<a class="btn alt sm" href="{{ url_for('main.customer', cid=r.id) }}">History</a> {% endif %}
+{% if key == 'products' %}<a class="btn alt sm" href="{{ url_for('main.bom', pid=r.id) }}">BOM</a> {% endif %}
+{% if can %}<a class="btn alt sm" href="{{ url_for('main.master_form', key=key, rid=r.id) }}">Edit</a>
+<form class="inline" method="post" action="{{ url_for('main.master_toggle', key=key, rid=r.id) }}"><input type="hidden" name="_csrf" value="{{ csrf_token() }}"><button class="sm {{ 'red' if r.active else 'mint' }}">{{ 'Deactivate' if r.active else 'Activate' }}</button></form>{% endif %}</td></tr>{% endfor %}</table></div>{% endblock %}

@@ -1,0 +1,2 @@
+{% extends 'base.html' %}{% block content %}<h1>Bill of materials</h1><p class="sub">Standard quantities and expected batch output per product.</p>
+<div class="card scroll"><table><tr><th>Product</th><th class="num">Expected batch output</th><th class="num">BOM lines</th><th></th></tr>{% for p in rows %}<tr><td>{{ p.name }} {{ p.pack_size }}</td><td class="num">{{ p.std_batch_output }} pkt</td><td class="num">{{ p.n }}</td><td><a class="btn alt sm" href="{{ url_for('main.bom', pid=p.id) }}">Open</a></td></tr>{% endfor %}</table></div>{% endblock %}

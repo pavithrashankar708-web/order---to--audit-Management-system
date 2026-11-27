@@ -1,0 +1,56 @@
+test_distributor_b_shortage (test_benchmark.Benchmark.test_distributor_b_shortage) ... ok
+test_fifo_batch_allocation (test_benchmark.Benchmark.test_fifo_batch_allocation) ... ok
+test_inventory_closing_balances (test_benchmark.Benchmark.test_inventory_closing_balances) ... ok
+test_invoice_gst_retailer_a (test_benchmark.Benchmark.test_invoice_gst_retailer_a) ... ok
+test_loss_findings (test_benchmark.Benchmark.test_loss_findings) ... ok
+test_outstanding (test_benchmark.Benchmark.test_outstanding) ... ok
+test_pouch_arithmetic (test_benchmark.Benchmark.test_pouch_arithmetic) ... ok
+test_production_cost (test_benchmark.Benchmark.test_production_cost) ... ok
+test_traceability_chain_is_real (test_benchmark.Benchmark.test_traceability_chain_is_real) ... ok
+test_variances (test_benchmark.Benchmark.test_variances) ... ok
+test_after_production_238 (test_benchmark.OpeningStock.test_after_production_238) ... ok
+test_opening (test_benchmark.OpeningStock.test_opening) ... ok
+test_ten_benchmark_steps_through_the_ui (test_demo_walkthrough.Walkthrough.test_ten_benchmark_steps_through_the_ui) ... ok
+test_adjustment_needs_reason (test_services.Inventory.test_adjustment_needs_reason) ... ok
+test_duplicate_ledger_posting_blocked (test_services.Inventory.test_duplicate_ledger_posting_blocked) ... ok
+test_duplicate_supplier_invoice_blocked (test_services.Inventory.test_duplicate_supplier_invoice_blocked) ... ok
+test_every_ledger_row_has_source_document (test_services.Inventory.test_every_ledger_row_has_source_document) ... ok
+test_insufficient_stock_blocked_and_whole_posting_rolled_back (test_services.Inventory.test_insufficient_stock_blocked_and_whole_posting_rolled_back) ... ok
+test_ledger_roll_forward_and_lots_reconcile_after_benchmark (test_services.Inventory.test_ledger_roll_forward_and_lots_reconcile_after_benchmark) ... ok
+test_purchase_updates_latest_cost_and_fifo_lots (test_services.Inventory.test_purchase_updates_latest_cost_and_fifo_lots) ... ok
+test_cgst_sgst_always_sum_to_tax (test_services.MoneyAndGst.test_cgst_sgst_always_sum_to_tax) ... ok
+test_interstate_invoice_uses_igst (test_services.MoneyAndGst.test_interstate_invoice_uses_igst) ... ok
+test_parsing_and_formatting_have_no_float_drift (test_services.MoneyAndGst.test_parsing_and_formatting_have_no_float_drift) ... ok
+test_rounding_half_away_from_zero (test_services.MoneyAndGst.test_rounding_half_away_from_zero) ... ok
+test_approval_cannot_exceed_available_stock (test_services.OrdersAndDispatch.test_approval_cannot_exceed_available_stock) ... ok
+test_cannot_invoice_unapproved_order (test_services.OrdersAndDispatch.test_cannot_invoice_unapproved_order) ... ok
+test_customer_ageing_and_outstanding_reports (test_services.OrdersAndDispatch.test_customer_ageing_and_outstanding_reports) ... ok
+test_fifo_across_three_batches (test_services.OrdersAndDispatch.test_fifo_across_three_batches) ... ok
+test_inactive_product_rejected_in_service (test_services.OrdersAndDispatch.test_inactive_product_rejected_in_service) ... ok
+test_one_invoice_and_one_dispatch_per_order (test_services.OrdersAndDispatch.test_one_invoice_and_one_dispatch_per_order) ... ok
+test_payment_rules (test_services.OrdersAndDispatch.test_payment_rules) ... ok
+test_reject_flow (test_services.OrdersAndDispatch.test_reject_flow) ... ok
+test_reports_numbers (test_services.OrdersAndDispatch.test_reports_numbers) ... ok
+test_reserved_stock_is_not_double_sold (test_services.OrdersAndDispatch.test_reserved_stock_is_not_double_sold) ... ok
+test_batch_ids_are_unique (test_services.Prod.test_batch_ids_are_unique) ... ok
+test_clean_batch_has_no_findings (test_services.Prod.test_clean_batch_has_no_findings) ... ok
+test_complete_requires_issue_and_blocks_double_complete (test_services.Prod.test_complete_requires_issue_and_blocks_double_complete) ... ok
+test_overhead_costs_are_set_not_added (test_services.Prod.test_overhead_costs_are_set_not_added) ... ok
+test_three_percent_threshold (test_services.Prod.test_three_percent_threshold) ... ok
+test_all_pages_render_for_office_roles (test_web.Web.test_all_pages_render_for_office_roles) ... ok
+test_csrf_enforced_when_enabled (test_web.Web.test_csrf_enforced_when_enabled) ... ok
+test_exports (test_web.Web.test_exports) ... ok
+test_inactive_product_not_selectable (test_web.Web.test_inactive_product_not_selectable) ... ok
+test_login_required_and_bad_password (test_web.Web.test_login_required_and_bad_password) ... ok
+test_new_product_in_settings_reaches_order_entry_and_invoice (test_web.Web.test_new_product_in_settings_reaches_order_entry_and_invoice) ... ok
+test_readonly_roles_cannot_post (test_web.Web.test_readonly_roles_cannot_post) ... ok
+test_salesman_restrictions (test_web.Web.test_salesman_restrictions) ... ok
+test_salesman_sees_only_own_orders (test_web.Web.test_salesman_sees_only_own_orders) ... ok
+test_supervisor_and_admin_boundaries (test_web.Web.test_supervisor_and_admin_boundaries) ... ok
+test_ui_order_to_dispatch_flow (test_web.Web.test_ui_order_to_dispatch_flow) ... ok
+test_ui_production_flow_and_duplicate_guard (test_web.Web.test_ui_production_flow_and_duplicate_guard) ... ok
+
+----------------------------------------------------------------------
+Ran 51 tests in 7.377s
+
+OK
